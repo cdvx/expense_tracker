@@ -16,8 +16,11 @@ defmodule ExpenseTracker.Application do
       # Start a worker by calling: ExpenseTracker.Worker.start_link(arg)
       # {ExpenseTracker.Worker, arg},
       # Start to serve requests, typically the last entry
+      # ExpenseTracker.Store,
       ExpenseTrackerWeb.Endpoint
     ]
+
+    # children = if Mix.env() != :test, do: children ++ [ExpenseTracker.Store], else: children
 
     # See https://hexdocs.pm/elixir/Supervisor.html
     # for other strategies and supported options

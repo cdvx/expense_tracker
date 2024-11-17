@@ -30,6 +30,10 @@ config :expense_tracker, ExpenseTrackerWeb.Endpoint,
 # at the `config/runtime.exs`.
 config :expense_tracker, ExpenseTracker.Mailer, adapter: Swoosh.Adapters.Local
 
+# configure PubSub
+config :expense_tracker, ExpenseTrackerWeb.Endpoint,
+  pubsub_server: ExpenseTracker.PubSub
+
 # Configure esbuild (the version is required)
 config :esbuild,
   version: "0.17.11",

@@ -1,0 +1,53 @@
+<div class="max-w-lg mx-auto mt-8">
+  <h1 class="text-2xl font-bold mb-6">Welcome, <%= @username %>!</h1>
+
+  <form phx-submit="add_expense" class="space-y-4">
+    <div class="flex flex-col">
+      <label class="text-sm font-medium">Amount:</label>
+      <input
+        type="text"
+        name="amount"
+        value={@amount}
+        phx-change="validate_money"
+        placeholder="0.00"
+        class="border border-gray-300 rounded px-4 py-2"
+      />
+    </div>
+
+    <div class="flex flex-col">
+      <label class="text-sm font-medium">Date:</label>
+      <input
+        type="date"
+        name="date"
+        value={Date.utc_today()}
+        class="border border-gray-300 rounded px-4 py-2"
+      />
+    </div>
+
+    <div class="flex flex-col">
+      <label class="text-sm font-medium">Description:</label>
+      <input
+        type="text"
+        name="description"
+        class="border border-gray-300 rounded px-4 py-2"
+        placeholder="Expense description"
+      />
+    </div>
+
+    <button
+      type="submit"
+      class="bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600 transition-colors"
+    >
+      Add Expense
+    </button>
+  </form>
+
+  <h2 class="text-xl font-semibold mt-8">Your Expenses</h2>
+  <ul class="list-disc pl-6 mt-4">
+    <%= for expense <- @expenses do %>
+      <li class="mb-2">
+        <strong class="text-lg"><%= expense.amount %></strong> on <%= expense.date %> - <%= expense.description || "No description" %>
+      </li>
+    <% end %>
+  </ul>
+</div>
